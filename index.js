@@ -37,6 +37,20 @@ app.post("/", function (req, res) {
     res.send("This is successful!");
 });
 
+app.get('handle',function(req, res){
+  console.log("====================================");
+  console.log("Received GET - Printing Headers");
+  console.log("====================================");
+  console.log(req.headers)
+  console.log("====================================");
+  console.log("HEADERS DONE - PRINTING Body");
+  console.log("====================================");
+  console.log(req.body);
+
+  res.send("This is successful!");
+
+});
+
 
 http.createServer(app).listen(app.get('port'), function(){
  console.log('Express server listening on port ' + app.get('port'));
