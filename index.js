@@ -32,14 +32,22 @@ app.post("/", function(req, res) {
     console.log("====================================");
     console.log("HEADERS DONE - PRINTING Body");
     console.log("====================================");
-    console.log(JSON.stringify(req.body));
+
     try {
-        console.log(JSON.stringify(res.query, null, 4));
+        console.log("Printing strinified JSON:");
+        console.log(JSON.stringify(req.body, null, 4));
     } catch (ex) {
-        console.log("UNABLE TO STRINGIFY QUERY");
+        console.log("UNABLE TO STRINGIFY BODY\n");
     }
-    console.log("PRINTING FULL REQUEST");
-    console.log(req);
+
+    try{
+      console.log("\nPrinting normal body:\n");
+      console.log(req.body);
+    } catch (ex){
+      console.log("UNABLE TO PRINT BODY");
+    }
+    // console.log("PRINTING FULL REQUEST");
+    // console.log(req);
 
     res.send("This is successful!");
 });
