@@ -32,7 +32,7 @@ app.post("/", function(req, res) {
     console.log("====================================");
     console.log("HEADERS DONE - PRINTING Body");
     console.log("====================================");
-    console.log(req.body);
+    console.log(JSON.stringify(req.body));
     try {
         console.log(JSON.stringify(res.query, null, 4));
     } catch (ex) {
