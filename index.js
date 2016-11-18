@@ -1,7 +1,7 @@
 var express = require('express');
 var async = require('async');
 var http = require('http');
-var bodyParser = require ("body-parser");
+var bodyParser = require("body-parser");
 
 var app = express();
 
@@ -24,7 +24,7 @@ try {
  */
 app.use(bodyParser.json());
 
-app.post("/", function (req, res) {
+app.post("/", function(req, res) {
     console.log("====================================");
     console.log("Received request - Printing Headers");
     console.log("====================================");
@@ -32,33 +32,37 @@ app.post("/", function (req, res) {
     console.log("====================================");
     console.log("HEADERS DONE - PRINTING Body");
     console.log("====================================");
-   // console.log(req.body);
-    try{
-    console.log(JSON.stringify(res.query, null, 4));
-} catch (ex){
-console.log("UNABLE TO STRINGIFY QUERY");
-}
-    //console.log(req);	
+    console.log(req.body);
+    try {
+        console.log(JSON.stringify(res.query, null, 4));
+    } catch (ex) {
+        console.log("UNABLE TO STRINGIFY QUERY");
+    }
+    //console.log(req);
 
     res.send("This is successful!");
 });
 
-app.get('/',function(req, res){
-  console.log("====================================");
-  console.log("Received GET - Printing Headers");
-  console.log("====================================");
-  console.log(req.headers)
-  console.log("====================================");
-  console.log("HEADERS DONE - PRINTING Body");
-  console.log("====================================");
-  console.log(req.body);
-  //console.log(req);
-        try{     console.log(JSON.stringify(res.query, null, 4)); } catch (ex){ console.log("UNABLE TO STRINGIFY QUERY"); }
-  res.send("This is successful!");
+app.get('/', function(req, res) {
+    console.log("====================================");
+    console.log("Received GET - Printing Headers");
+    console.log("====================================");
+    console.log(req.headers)
+    console.log("====================================");
+    console.log("HEADERS DONE - PRINTING Body");
+    console.log("====================================");
+    console.log(req.body);
+    //console.log(req);
+    try {
+        console.log(JSON.stringify(res.query, null, 4));
+    } catch (ex) {
+        console.log("UNABLE TO STRINGIFY QUERY");
+    }
+    res.send("This is successful!");
 
 });
 
 
-http.createServer(app).listen(app.get('port'), function(){
- console.log('Express server listening on port ' + app.get('port'));
+http.createServer(app).listen(app.get('port'), function() {
+    console.log('Express server listening on port ' + app.get('port'));
 });
