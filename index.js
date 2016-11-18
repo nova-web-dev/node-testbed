@@ -38,7 +38,8 @@ app.post("/", function(req, res) {
     } catch (ex) {
         console.log("UNABLE TO STRINGIFY QUERY");
     }
-    //console.log(req);
+    console.log("PRINTING FULL REQUEST");
+    console.log(req);
 
     res.send("This is successful!");
 });
