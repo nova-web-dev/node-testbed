@@ -32,7 +32,13 @@ app.post("/", function (req, res) {
     console.log("====================================");
     console.log("HEADERS DONE - PRINTING Body");
     console.log("====================================");
-    console.log(req.body);
+   // console.log(req.body);
+    try{
+    console.log(JSON.stringify(res.query, null, 4));
+} catch (ex){
+console.log("UNABLE TO STRINGIFY QUERY");
+}
+    //console.log(req);	
 
     res.send("This is successful!");
 });
@@ -46,7 +52,8 @@ app.get('/',function(req, res){
   console.log("HEADERS DONE - PRINTING Body");
   console.log("====================================");
   console.log(req.body);
-
+  //console.log(req);
+        try{     console.log(JSON.stringify(res.query, null, 4)); } catch (ex){ console.log("UNABLE TO STRINGIFY QUERY"); }
   res.send("This is successful!");
 
 });
