@@ -37,7 +37,7 @@ app.post("/", function (req, res) {
     res.send("This is successful!");
 });
 
-app.get('handle',function(req, res){
+app.get('/',function(req, res){
   console.log("====================================");
   console.log("Received GET - Printing Headers");
   console.log("====================================");
