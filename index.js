@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 
 app.post("/", function(req, res) {
     console.log("====================================");
-    console.log("Received request - Printing Headers");
+    console.log("Received POST - Printing Headers");
     console.log("====================================");
     console.log(req.headers)
     console.log("====================================");
@@ -71,7 +71,45 @@ app.get('/', function(req, res) {
 
 });
 
+app.get('/delivery-receipt-webhook', function(req, res) {
+    handleWebhook(req.query, res);
+});
+
+app.post('/delivery-receipt-webhook', function(req, res) {
+    handleWebhook(req.body, res);
+});
 
 http.createServer(app).listen(app.get('port'), function() {
     console.log('Express server listening on port ' + app.get('port'));
 });
+
+
+
+
+
+
+
+
+
+
+function handleWebhook(params, res) {
+    if (!params['status'] || !params['messageId']) {
+        console.log('This is not a delivery receipt');
+    } else {
+        //This is a DLR, check that your message has been delivered correctly
+        if (params['status'] !== 'delivered') {
+            console.log("Fail:", params['status'], ": ", params['err-code']);
+        } else {
+            console.log("Success");
+          /*
+            * The following parameters in the delivery receipt should match the ones
+            * in your request:
+            * Request - from, dlr - to\n
+            * Response - message-id, dlr - messageId
+            * Request - to, Responese - to, dlr - msisdn
+            * Request - client-ref, dlr - client-ref
+           */
+        }
+    }
+    res.sendStatus(200);
+}
