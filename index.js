@@ -22,7 +22,12 @@ try {
 /**bodyParser.json(options)
  * Parses the text as JSON and exposes the resulting object on req.body.
  */
-app.use(bodyParser.json());
+ app.use(bodyParser.urlencoded({ extended: false }));
+
+ // parse application/json
+ app.use(bodyParser.json());
+
+ app.use(bodyParser.raw());
 
 app.post("/*", function(req, res) {
     console.log("====================================");
