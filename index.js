@@ -26,13 +26,9 @@ app.use(bodyParser.json());
 
 app.post("/*", function(req, res) {
     console.log("====================================");
-    console.log("Received POST - Printing Headers");
-    console.log("====================================");
-    console.log(req.headers)
-    console.log("====================================");
-    console.log("HEADERS DONE - PRINTING Body");
-    console.log("====================================");
-
+    console.log("Received POST - Printing Headers\n");
+    console.log(req.headers);
+    console.log("\nHEADERS DONE - PRINTING Body\n");
     try {
         console.log("Printing strinified JSON:");
         console.log(JSON.stringify(req.body, null, 4));
@@ -46,46 +42,35 @@ app.post("/*", function(req, res) {
     } catch (ex){
       console.log("UNABLE TO PRINT BODY");
     }
+    console.log("====================================");
     // console.log("PRINTING FULL REQUEST");
     // console.log(req);
 
+    console.log("\nPrinting params...\n");
+    console.log(req.params);
     res.send("This is successful!");
 });
 
 app.get('/*', function(req, res) {
     console.log("====================================");
-    console.log("Received GET - Printing Headers");
-    console.log("====================================");
-    console.log(req.headers)
-    console.log("====================================");
-    console.log("HEADERS DONE - PRINTING Body");
-    console.log("====================================");
+    console.log("Received GET - Printing Headers\n");
+    console.log(req.headers);
+    console.log("\nHEADERS DONE - PRINTING Body\n");
     console.log(req.body);
+    console.log("====================================");
     //console.log(req);
     try {
         console.log(JSON.stringify(res.query, null, 4));
     } catch (ex) {
         console.log("UNABLE TO STRINGIFY QUERY");
     }
+    console.log("\nPrinting params...\n");
+    console.log(req.params);
     res.send("This is successful!");
 
 });
 
-app.get('/delivery-receipt-webhook', function(req, res) {
-    //handleWebhook(req.query, res);
-});
 
-app.post('/delivery-receipt-webhook', function(req, res) {
-    //handleWebhook(req.body, res);
-});
-
-app.get('/inbound-message-webhook', function(req, res) {
-    //handleWebhook(req.query, res);
-});
-
-app.post('/inbound-message-webhook', function(req, res) {
-    //handleWebhook(req.body, res);
-});
 
 http.createServer(app).listen(app.get('port'), function() {
     console.log('Express server listening on port ' + app.get('port'));
