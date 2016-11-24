@@ -51,9 +51,14 @@ bot.on('message', function(msg) {
         bot.sendMessage(chatId, "Hi there, welcome to the abalobi bot! Try some basic commands to get started. Type /help for more information.");
         firstMessage = false;
     } else {
-        bot.sendMessage(chatId, "Message received.");
+        // bot.sendMessage(chatId, "Message received.");
     }
-    console.log(JSON.stringify(msg));
+    Cleverbot.prepare(function(){
+      cleverbot.write(msg.text, function (response) {
+           bot.sendMessage(chatId, response.message);
+      });
+    });
+    // console.log(JSON.stringify(msg));
     // send a message to the chat acknowledging receipt of their message
     // bot.sendMessage(chatId, "Received your message");
 });
