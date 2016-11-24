@@ -29,7 +29,7 @@ try {
 
  app.use(bodyParser.raw());
 
-app.post("/*", function(req, res) {
+app.post("*", function(req, res) {
     console.log("====================================");
     console.log("Received POST - Printing Headers\n");
     console.log(req.headers);
@@ -40,37 +40,22 @@ app.post("/*", function(req, res) {
     } catch (ex) {
         console.log("UNABLE TO STRINGIFY BODY\n");
     }
-
-    try{
-      console.log("\nPrinting normal body:\n");
-      console.log(req.body);
-    } catch (ex){
-      console.log("UNABLE TO PRINT BODY");
-    }
     console.log("====================================");
-    // console.log("PRINTING FULL REQUEST");
-    // console.log(req);
-
-    console.log("\nPrinting params...\n");
-    console.log(req.params);
     res.send("This is successful!");
 });
 
-app.get('/*', function(req, res) {
+app.get('*', function(req, res) {
     console.log("====================================");
     console.log("Received GET - Printing Headers\n");
     console.log(req.headers);
     console.log("\nHEADERS DONE - PRINTING Body\n");
-    console.log(req.body);
-    console.log("====================================");
     //console.log(req);
     try {
         console.log(JSON.stringify(res.query, null, 4));
     } catch (ex) {
         console.log("UNABLE TO STRINGIFY QUERY");
     }
-    console.log("\nPrinting params...\n");
-    console.log(req.params);
+    console.log("====================================");
     res.send("This is successful!");
 
 });
