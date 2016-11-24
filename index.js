@@ -22,9 +22,9 @@ try {
 /**bodyParser.json(options)
  * Parses the text as JSON and exposes the resulting object on req.body.
  */
-app.use(bodyParser);
+app.use(bodyParser.json());
 
-app.post("/", function(req, res) {
+app.post("/*", function(req, res) {
     console.log("====================================");
     console.log("Received POST - Printing Headers");
     console.log("====================================");
@@ -52,7 +52,7 @@ app.post("/", function(req, res) {
     res.send("This is successful!");
 });
 
-app.get('/', function(req, res) {
+app.get('/*', function(req, res) {
     console.log("====================================");
     console.log("Received GET - Printing Headers");
     console.log("====================================");
@@ -72,19 +72,19 @@ app.get('/', function(req, res) {
 });
 
 app.get('/delivery-receipt-webhook', function(req, res) {
-    handleWebhook(req.query, res);
+    //handleWebhook(req.query, res);
 });
 
 app.post('/delivery-receipt-webhook', function(req, res) {
-    handleWebhook(req.body, res);
+    //handleWebhook(req.body, res);
 });
 
 app.get('/inbound-message-webhook', function(req, res) {
-    handleWebhook(req.query, res);
+    //handleWebhook(req.query, res);
 });
 
 app.post('/inbound-message-webhook', function(req, res) {
-    handleWebhook(req.body, res);
+    //handleWebhook(req.body, res);
 });
 
 http.createServer(app).listen(app.get('port'), function() {
