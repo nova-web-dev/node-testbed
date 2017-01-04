@@ -29,6 +29,9 @@ try {
 
  app.use(bodyParser.raw());
 
+ app.use(bodyParser.json({limit: '5mb'}));
+ app.use(bodyParser.urlencoded({limit: '5mb'}));
+
 app.post("*", function(req, res) {
     console.log("====================================");
     console.log("Received POST - Printing Headers\n");
