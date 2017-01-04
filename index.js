@@ -22,15 +22,12 @@ try {
 /**bodyParser.json(options)
  * Parses the text as JSON and exposes the resulting object on req.body.
  */
- app.use(bodyParser.urlencoded({ extended: false }));
+ app.use(bodyParser.urlencoded({ extended: false, limit: '5mb' }));
 
  // parse application/json
- app.use(bodyParser.json());
-
- app.use(bodyParser.raw());
-
  app.use(bodyParser.json({limit: '5mb'}));
- app.use(bodyParser.urlencoded({limit: '5mb'}));
+
+ app.use(bodyParser.raw({limit: '5mb'}));
 
 app.post("*", function(req, res) {
     console.log("====================================");
